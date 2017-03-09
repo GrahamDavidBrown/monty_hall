@@ -39,7 +39,7 @@ class Monty_Hall:
          that a random choice will be made between the two remaining doors
          which we know to have 50/50, a digital coin flip decices our win
          or loss. 50 percent win expected."""
-        return random.randint(0, 1)
+        return random.choice(True, False)
 
 
 def main():
