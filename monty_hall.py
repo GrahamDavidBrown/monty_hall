@@ -7,17 +7,19 @@ class Monty_Hall:
         door_one = False
         door_two = False
         door_three = False
-        winner = random.randint(0, 2)
         doors = [door_one, door_two, door_three]
+        winner = random.randint(0, 2)
         doors[winner] = True
         self.doors = doors
 
     def stay(self):
         """This simulates not switching between doors when the option is
          presented. Because the 'player' is not switching, the first door
-         that the user opens will be the one they end with regardless of
+         that the player chooses will be the one they end with regardless of
          which secondary door is revealed. 33 percent win expected."""
         random_door_pick = random.randint(0, 2)
+        # since no switching is involved in this section their initial choice
+        # will be their final choice.
         return self.doors[random_door_pick]
 
     def switch(self):
@@ -27,10 +29,12 @@ class Monty_Hall:
          loss. Since the 'player' has predetermined to switch, they will
          always switch to the 'prize' that they did not select at the onset,
          hence if their original random_door_pick was a win they will switch to
-         a lose and visa versa. 66 percent win expected."""
+         a loss and visa versa. 66 percent win expected."""
         random_door_pick = self.doors[random.randint(0, 2)]
+        # if their initial pick was a winner, they switch to a losing door
         if random_door_pick is True:
             return False
+        # opposite that other thing I said
         elif random_door_pick is False:
             return True
 
@@ -39,14 +43,16 @@ class Monty_Hall:
          that a random choice will be made between the two remaining doors
          which we know to have 50/50, a digital coin flip decices our win
          or loss. 50 percent win expected."""
-        return random.choice(True, False)
+        # in this section, initial pick doesn't matter. and the pseudorandom
+        # numbers generated from random suffice for 50% odds
+        return random.choice([True, False])
 
 
 def main():
     stay_wins = 0
     switch_wins = 0
     random_wins = 0
-    # all functions in the following loops return True(1) for win
+    # all functions in the following loops return True for win
     count_simulations = 0
     while count_simulations < 1000:
         simulation = Monty_Hall()
